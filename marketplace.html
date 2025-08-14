@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel-X Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            animation: fadeDown 1s ease-in-out;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: #00ffcc;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .shop-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.4s ease;
+            padding: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .shop-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            transition: transform 0.4s ease;
+        }
+
+        .shop-card h3 {
+            font-size: 1.4rem;
+            color: #00ffcc;
+            margin-bottom: 10px;
+        }
+
+        .shop-card p {
+            font-size: 1rem;
+            color: #ddd;
+            line-height: 1.4;
+        }
+
+        .shop-card:hover {
+            transform: scale(1.05);
+            background: rgba(0, 255, 204, 0.1);
+        }
+
+        .shop-card:hover img {
+            transform: rotate(8deg) scale(1.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 40px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fas fa-store"></i> Sentinel-X Marketplace</h1>
+        <p>All shops and services are proudly developed & supported by Sentinel-X Systems</p>
+    </header>
+
+    <section class="market-grid">
+        <!-- Shop 1 -->
+        <a class="shop-card" href="https://mthoesaps.github.io/bk_gases/" target="_blank">
+            <img src="shops&services/bk-gases.png" alt="BK Gases">
+            <h3>BK Gases</h3>
+            <p>LP Gas supply for homes and businesses across Zimbabwe.</p>
+        </a>
+
+        <!-- Shop 2 -->
+        <a class="shop-card" href="https://sentinelxzimbabwe.github.io/EdgeBot-Components-Store/" target="_blank">
+            <img src="shops&services/edgebot-components-store.png" alt="EdgeBot Components Store">
+            <h3>EdgeBot Components Store</h3>
+            <p>IoT devices, robotics components, and high-tech electronics for innovators.</p>
+        </a>
+    </section>
+
+    <footer>
+        &copy; 2025 Sentinel-X Systems. All rights reserved.
+    </footer>
+
+</body>
+</html>
