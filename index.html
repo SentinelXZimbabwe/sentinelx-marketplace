@@ -17,13 +17,14 @@
 
 body{
   font-family:"Segoe UI",Arial,sans-serif;
-  background:url("images/background.png") no-repeat center center fixed;
-  background-size:cover;
+  background:
+    radial-gradient(circle at center, rgba(2,6,23,.85), rgba(2,6,23,.95)),
+    url("logo/logo.png") no-repeat center center fixed;
+  background-size: contain;
   color:#e5e7eb;
 }
 
 .overlay{
-  background:rgba(2,6,23,.92);
   min-height:100vh;
 }
 
@@ -74,7 +75,7 @@ header h1{
   padding-left:14px;
 }
 
-/* Grid images */
+/* Grid */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -82,7 +83,7 @@ header h1{
 }
 
 .image-panel{
-  background:var(--panel);
+  background:rgba(11,18,32,.85);
   padding:16px;
   border-radius:16px;
   box-shadow:0 16px 30px rgba(0,0,0,.6);
@@ -95,7 +96,7 @@ header h1{
 
 /* Form */
 .form-box{
-  background:var(--panel);
+  background:rgba(11,18,32,.9);
   padding:30px;
   border-radius:20px;
   box-shadow:0 20px 40px rgba(0,0,0,.6);
@@ -161,6 +162,8 @@ footer{
   header{flex-direction:column;text-align:center}
   .hero h2{font-size:30px}
 }
+
+/* Script */
 </style>
 
 <script>
@@ -168,6 +171,47 @@ function togglePayment(type){
   document.getElementById("bank").classList.add("hidden");
   document.getElementById("ecocash").classList.add("hidden");
   document.getElementById(type).classList.remove("hidden");
+}
+
+function submitAgentForm(){
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const region = document.getElementById("region").value;
+  const motivation = document.getElementById("motivation").value;
+
+  let paymentDetails = "";
+
+  if(document.getElementById("payBank").checked){
+    paymentDetails =
+      "Bank Name: " + document.getElementById("bankName").value + "\n" +
+      "Account Name: " + document.getElementById("accountName").value + "\n" +
+      "Account Number: " + document.getElementById("accountNumber").value;
+  }
+
+  if(document.getElementById("payEco").checked){
+    paymentDetails =
+      "EcoCash Name: " + document.getElementById("ecoName").value + "\n" +
+      "EcoCash Number: " + document.getElementById("ecoPhone").value;
+  }
+
+  const message =
+`SENTINEL-X AGENT APPLICATION
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Region: ${region}
+
+PAYMENT DETAILS:
+${paymentDetails}
+
+MOTIVATION:
+${motivation}
+`;
+
+  const url = "https://wa.me/263787556929?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
 }
 </script>
 </head>
@@ -183,13 +227,13 @@ function togglePayment(type){
 <section class="hero">
   <h2>🚀 Business Tools & Digital Solutions</h2>
   <p>
-    A secure, enterprise-grade marketplace built to power, maintain,
-    and scale modern businesses through Sentinel-X systems.
+    A secure, subscription-based ecosystem powering modern businesses
+    through Sentinel-X systems.
   </p>
 </section>
 
 <section class="section">
-  <h3 class="section-title">💼 Marketplace Pricing</h3>
+  <h3 class="section-title">💼 Pricing Overview</h3>
   <div class="grid">
     <div class="image-panel">
       <img src="images/pricing1.png" alt="Marketplace Pricing">
@@ -201,7 +245,7 @@ function togglePayment(type){
 </section>
 
 <section class="section">
-  <h3 class="section-title">🧑‍💼 Become a Sentinel-X Agent</h3>
+  <h3 class="section-title">🧑‍💼 Sentinel-X Agent Application</h3>
 
   <div class="grid">
     <div class="image-panel">
@@ -209,66 +253,59 @@ function togglePayment(type){
     </div>
 
     <div class="form-box">
-      <p>
-        Apply to become a <strong>Sentinel-X Agent</strong> and help onboard
-        businesses into the Sentinel-X Marketplace.
+
+      <label>👤 Full Name</label>
+      <input id="name" type="text" required>
+
+      <label>📧 Email</label>
+      <input id="email" type="email" required>
+
+      <label>📞 Phone</label>
+      <input id="phone" type="tel" required>
+
+      <label>📍 City / Region</label>
+      <input id="region" type="text" required>
+
+      <div class="radio-group">
+        <label>
+          <input id="payBank" type="radio" name="pay" onclick="togglePayment('bank')" required>
+          🏦 Bank Account
+        </label>
+        <label>
+          <input id="payEco" type="radio" name="pay" onclick="togglePayment('ecocash')">
+          📱 EcoCash
+        </label>
+      </div>
+
+      <div id="bank" class="hidden">
+        <label>🏦 Bank Name</label>
+        <input id="bankName" type="text">
+
+        <label>👤 Account Name</label>
+        <input id="accountName" type="text">
+
+        <label>🔢 Account Number</label>
+        <input id="accountNumber" type="text">
+      </div>
+
+      <div id="ecocash" class="hidden">
+        <label>👤 EcoCash Name</label>
+        <input id="ecoName" type="text">
+
+        <label>📱 EcoCash Phone</label>
+        <input id="ecoPhone" type="tel">
+      </div>
+
+      <label>✍️ Motivation</label>
+      <textarea id="motivation" rows="4" required></textarea>
+
+      <button onclick="submitAgentForm()">📨 Submit via WhatsApp</button>
+
+      <p style="margin-top:14px;font-size:14px">
+        By submitting, you agree to the
+        <a href="rules.html" target="_blank">📜 Sentinel-X Marketplace Rules</a>
       </p>
 
-      <form action="https://wa.me/263787556929" method="get" target="_blank">
-
-        <label>👤 Full Name</label>
-        <input type="text" required>
-
-        <label>📧 Email Address</label>
-        <input type="email" required>
-
-        <label>📞 Phone Number</label>
-        <input type="tel" required>
-
-        <label>📍 City / Region</label>
-        <input type="text" required>
-
-        <div class="radio-group">
-          <label>
-            <input type="radio" name="pay" onclick="togglePayment('bank')" required>
-            🏦 Bank Account
-          </label>
-          <label>
-            <input type="radio" name="pay" onclick="togglePayment('ecocash')">
-            📱 EcoCash
-          </label>
-        </div>
-
-        <div id="bank" class="hidden">
-          <label>🏦 Bank Name</label>
-          <input type="text">
-
-          <label>👤 Account Name</label>
-          <input type="text">
-
-          <label>🔢 Account Number</label>
-          <input type="text">
-        </div>
-
-        <div id="ecocash" class="hidden">
-          <label>👤 EcoCash Account Name</label>
-          <input type="text">
-
-          <label>📱 EcoCash Phone Number</label>
-          <input type="tel">
-        </div>
-
-        <label>✍️ Why do you want to be an Agent?</label>
-        <textarea rows="4" required></textarea>
-
-        <button type="submit">📨 Submit Application</button>
-
-        <p style="margin-top:14px;font-size:14px">
-          By applying, you agree to the
-          <a href="rules.html" target="_blank">📜 Sentinel-X Marketplace Rules</a>
-        </p>
-
-      </form>
     </div>
   </div>
 </section>
